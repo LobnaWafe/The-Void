@@ -1,0 +1,104 @@
+{
+  "opening_01": {
+    "speaker": "Milo",
+    "text": {
+      "en": "Hey! There you are!",
+      "ar": "أهو إنت وصلت!"
+    },
+    "nextId": "opening_02"
+  },
+  "opening_02": {
+    "speaker": "Milo",
+    "text": {
+      "en": "I'm Milo! I'll be your guide around here.",
+      "ar": "أنا ميلو! وهكون دليلك هنا."
+    },
+    "nextId": "opening_03"
+  },
+  "opening_03": {
+    "speaker": "Milo",
+    "text": {
+      "en": "Don't worry, there's no rush. This place is all about taking your time, exploring, and having a little fun.",
+      "ar": "متقلقش، مفيش أي استعجال. المكان ده معمول علشان تاخد راحتك، وتستكشف، وتتبسط شوية."
+    },
+    "nextId": "opening_question"
+  },
+  "opening_question": {
+    "speaker": "Milo",
+    "text": {
+      "en": "So... are you ready to see what I've prepared for you?",
+      "ar": "طيب... مستعد تشوف أنا محضّرلك إيه؟"
+    },
+    "options": [
+      {
+        "text": {
+          "en": "Absolutely! Let's go!",
+          "ar": "أكيد! يلا بينا!"
+        },
+        "nextId": "ready_response"
+      },
+      {
+        "text": {
+          "en": "Wait, what exactly is this place?",
+          "ar": "استنى، هو المكان ده إيه بالضبط؟"
+        },
+        "nextId": "place_response"
+      }
+    ]
+  },
+  "ready_response": {
+    "speaker": "Milo",
+    "text": {
+      "en": "Ha! I like that energy! Alright, then. Let's start with something simple.",
+      "ar": "هاه! عاجبني حماسك ده! تمام، يلا نبدأ بحاجة بسيطة."
+    },
+    "nextId": "challenge_intro"
+  },
+  "place_response": {
+    "speaker": "Milo",
+    "text": {
+      "en": "Oh, that's a good question! Think of it as a little world of your own. Somewhere you can explore, solve puzzles, and forget about everything else for a while.",
+      "ar": "أوه، سؤال حلو! اعتبره عالم صغير خاص بيك. مكان تقدر تستكشفه، وتحل فيه الألغاز، وتنسى كل حاجة تانية شوية."
+    },
+    "nextId": "place_followup"
+  },
+  "place_followup": {
+    "speaker": "Milo",
+    "text": {
+      "en": "And don't worry, I'll be right here if you need me. How about we start with something simple?",
+      "ar": "ومتقلقش، أنا هكون هنا لو احتجتني. إيه رأيك نبدأ بحاجة بسيطة؟"
+    },
+    "options": [
+      {
+        "text": {
+          "en": "Sure, let's try!",
+          "ar": "تمام، يلا نجرب!"
+        },
+        "nextId": "challenge_intro"
+      },
+      {
+        "text": {
+          "en": "Can you give me a hint first?",
+          "ar": "ممكن تديني تلميح الأول؟"
+        },
+        "nextId": "hint_response"
+      }
+    ]
+  },
+  "challenge_intro": {
+    "speaker": "Milo",
+    "text": {
+      "en": "I've prepared a little challenge for you. Nothing too difficult, I promise! Take a good look around. You never know what might catch your eye!",
+      "ar": "أنا محضّرلك تحدّي صغير. مش صعب أوي، بوعدك! بص حواليك كويس. ممكن تلاقي حاجة تلفت نظرك من حيث ما تتوقعش!"
+    },
+    "nextId": "start_first_puzzle"
+  },
+  "hint_response": {
+    "speaker": "Milo",
+    "text": {
+      "en": "Well, let's see... Sometimes it's easier to notice something when you stop looking at the obvious things.",
+      "ar": "خليني أفكر... ساعات بيكون أسهل تلاحظ حاجة لما تبطل تدور على الحاجات الواضحة قدامك."
+    },
+    "nextId": "challenge_intro"
+  }
+}

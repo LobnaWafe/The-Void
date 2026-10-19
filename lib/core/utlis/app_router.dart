@@ -47,7 +47,7 @@ abstract class AppRouter {
     return CustomTransitionPage(
       key: state.pageKey,
       child: const GameChatView(), // الشاشة اللي هتروحي لها
-      transitionDuration: const Duration(milliseconds: 800), // مدة الانيميشن (تقدري تزوديها أو تقلليها)
+      transitionDuration: const Duration(milliseconds: 1000), // مدة الانيميشن (تقدري تزوديها أو تقلليها)
       reverseTransitionDuration: const Duration(milliseconds: 800), // مدة الانيميشن وقت الرجوع
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         // بنستخدم FadeTransition عشان الشاشة تظهر وتختفي تدريجياً (Fade In / Fade Out)

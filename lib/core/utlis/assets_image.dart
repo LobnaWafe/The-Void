@@ -10,4 +10,10 @@ class AssetsImage {
     'assets/images/clock_hours.png';
      static const String clockMImage =
     'assets/images/clock_minutes.png';
+ static const String cameraImage =
+    'assets/images/camera.png';
+
+     static const String horrorRoomImage =
+    'assets/images/horror_room.jpg';
+
 }

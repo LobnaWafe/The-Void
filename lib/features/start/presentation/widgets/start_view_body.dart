@@ -9,15 +9,16 @@ class StartViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    var height = MediaQuery.sizeOf(context).height;
+    var width = MediaQuery.sizeOf(context).width;
+    return Stack(
+    
       children: [
-        SizedBox(
-          width: width * 0.13,
-        ), // جزء النصوص والأزرار (ياخد 40% من الشاشة)
-        Expanded(
-          flex: 6,
+          VideoWidget(),
+   
+        Positioned(
+          top:height*0.25 ,
+          left:width*0.15 ,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,7 +31,7 @@ class StartViewBody extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
-
+          
               Row(
                 children: [
                   SizedBox(width: 36),
@@ -79,8 +80,8 @@ class StartViewBody extends StatelessWidget {
           ),
         ),
 
-        // جزء الفيديو (ياخد 60% من الشاشة)
-        const Expanded(flex: 4, child: VideoWidget()),
+       
+      
       ],
     );
   }
@@ -96,16 +97,28 @@ class VideoWidget extends StatefulWidget {
 class _VideoWidgetState extends State<VideoWidget> {
   late VideoPlayerController _controller;
 
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _controller = VideoPlayerController.asset('assets/videos/intro_game.mp4')
+  //     ..initialize().then((_) {
+  //       setState(() {});
+  //       _controller.play();
+  //       _controller.setLooping(true);
+  //     });
+  // }
+
   @override
-  void initState() {
-    super.initState();
-    _controller = VideoPlayerController.asset('assets/videos/game_intro.mp4')
-      ..initialize().then((_) {
-        setState(() {});
-        _controller.play();
-        _controller.setLooping(true);
-      });
-  }
+void initState() {
+  super.initState();
+  _controller = VideoPlayerController.asset('assets/videos/intro_game.mp4')
+    ..initialize().then((_) {
+      if (!mounted) return; // حماية ضد الـ Crash
+      setState(() {});
+      _controller.play();
+      _controller.setLooping(true);
+    });
+}
 
   @override
   void dispose() {
@@ -118,17 +131,11 @@ class _VideoWidgetState extends State<VideoWidget> {
     return SizedBox.expand(
       child: _controller.value.isInitialized
           ? FittedBox(
-              fit: BoxFit.cover, // يملى المساحة المخصصة ليه (60%) من غير تشويه
+              fit: BoxFit.cover, 
               child: SizedBox(
                 width: _controller.value.size.width,
                 height: _controller.value.size.height,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 5,
-                    horizontal: 150,
-                  ),
-                  child: VideoPlayer(_controller),
-                ),
+                child: VideoPlayer(_controller),
               ),
             )
           : const Center(child: SizedBox()),

@@ -50,7 +50,9 @@ class StartViewBody extends StatelessWidget {
                 children: [
                   TextButton(
                     onPressed: () {
-                      GoRouter.of(context).go(AppRouter.gameChatView);
+                      
+                    ///  GoRouter.of(context).go(AppRouter.gameChatView);
+                    GoRouter.of(context).go(AppRouter.firstStageView);
                     },
                     child: Text(
                       "Start",

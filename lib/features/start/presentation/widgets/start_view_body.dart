@@ -2,10 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:the_void/core/utlis/app_router.dart';
+import 'package:the_void/core/utlis/game_progress.dart';
 import 'package:video_player/video_player.dart';
 
 class StartViewBody extends StatelessWidget {
   const StartViewBody({super.key});
+
+  Future<void> resumeGame(BuildContext context) async {
+  final location = GameProgress.currentLocation;
+
+  switch (location) {
+    case GameProgress.firstStage:
+      context.go(AppRouter.firstStageView);
+      break;
+
+    case GameProgress.introduction:
+    case GameProgress.secondConversation:
+    default:
+      context.go(AppRouter.gameChatView);
+      break;
+  }
+}
 
   @override
   Widget build(BuildContext context) {
@@ -51,9 +68,9 @@ class StartViewBody extends StatelessWidget {
                 children: [
                   TextButton(
                     onPressed: () {
-                      
-                    ///  GoRouter.of(context).go(AppRouter.gameChatView);
-                    GoRouter.of(context).go(AppRouter.firstStageView);
+                      resumeGame(context);
+                     // GoRouter.of(context).go(AppRouter.gameChatView);
+                  //  GoRouter.of(context).go(AppRouter.firstStageView);
                     },
                     child: Text(
                       "Start",

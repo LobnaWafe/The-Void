@@ -5,7 +5,9 @@ class DialogueEntity {
   final String speaker;
   final Map<String, String> text;
   final String? nextId;
+  final String? expression;
   final List<DialogueOptionEntity> options;
+  final String? action;
 
   const DialogueEntity({
     required this.id,
@@ -13,5 +15,6 @@ class DialogueEntity {
     required this.text,
     this.nextId,
     this.options = const [],
+     this.expression, this.action,
   });
 }

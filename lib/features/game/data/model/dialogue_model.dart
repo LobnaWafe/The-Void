@@ -8,6 +8,8 @@ class DialogueModel extends DialogueEntity {
     required super.text,
     super.nextId,
     super.options,
+    super.expression,
+    super.action
   });
 
   factory DialogueModel.fromJson(
@@ -19,6 +21,8 @@ class DialogueModel extends DialogueEntity {
       speaker: json['speaker'] as String,
       text: Map<String, String>.from(json['text'] as Map),
       nextId: json['nextId'] as String?,
+      expression:json['expression'] as String? ,
+      action: json['action'] as String?,
       options: (json['options'] as List<dynamic>? ?? [])
           .map(
             (option) => DialogueOptionModel.fromJson(

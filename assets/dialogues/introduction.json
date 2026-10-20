@@ -91,7 +91,7 @@
       "en": "I've prepared a little challenge for you. Nothing too difficult, I promise! Take a good look around. You never know what might catch your eye!",
       "ar": "أنا محضّرلك تحدّي صغير. مش صعب أوي، بوعدك! بص حواليك كويس. ممكن تلاقي حاجة تلفت نظرك من حيث ما تتوقعش!"
     },
-    "nextId": "start_first_puzzle"
+    "action": "start_first_puzzle"
   },
   "hint_response": {
     "speaker": "Milo",

@@ -47,6 +47,7 @@ dependencies:
   video_player: ^2.11.1
   google_fonts: ^8.2.1
   flutter_launcher_icons: ^0.14.4
+  lottie: ^3.3.3
 
 dev_dependencies:
   flutter_test:
@@ -75,6 +76,7 @@ flutter:
     - assets/images/
     - assets/videos/
     - assets/dialogues/
+    - assets/animation/
 
   
 

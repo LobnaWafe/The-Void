@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:the_void/core/helper/cach_helper.dart';
 import 'package:the_void/core/services/custom_bloc_observer.dart';
 import 'package:the_void/core/utlis/app_router.dart';
+import 'package:the_void/core/utlis/game_progress.dart';
 import 'package:the_void/core/utlis/get_it.dart';
 
 void main() async {
     WidgetsFlutterBinding.ensureInitialized();
      Bloc.observer = CustomBlocObserver();
-  
+   await CacheHelper.init();
  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 
   await SystemChrome.setPreferredOrientations([
@@ -18,6 +20,8 @@ void main() async {
   ]);
 
     setupServiceLocator();
+
+  //  GameProgress.completeStage(stage: 0,nextLocation: "introduction");
 
   runApp(const MyApp());
 }

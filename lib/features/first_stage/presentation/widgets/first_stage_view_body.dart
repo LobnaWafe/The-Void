@@ -1,10 +1,9 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:lottie/lottie.dart';
 import 'package:panorama_viewer/panorama_viewer.dart';
-import 'package:the_void/core/utlis/app_router.dart';
 import 'package:the_void/core/utlis/assets_image.dart';
+import 'package:the_void/core/utlis/game_flow_manager.dart';
 import 'package:the_void/features/first_stage/presentation/widgets/custom_icon_search_widget.dart';
 import 'package:the_void/features/first_stage/presentation/widgets/first_stage_box.dart';
 import 'package:the_void/features/first_stage/presentation/widgets/first_stage_clock.dart';
@@ -19,7 +18,7 @@ class FirstStageViewBody extends StatefulWidget {
 
 class _FirstStageViewBodyState extends State<FirstStageViewBody> {
   Widget? activeOverlay;
-
+  String roomFirstStageImage =AssetsImage.roomFirstStageImage;
   bool hasKey = false;
 
   void showOverlay(Widget overlay) {
@@ -60,18 +59,21 @@ class _FirstStageViewBodyState extends State<FirstStageViewBody> {
     );
     return;
   }
-
   showOverlay(
     FirstStageBox(
       onClose: hideOverlay,
       onStageCompleted: _onStageCompleted,
-      scaryImage: AssetsImage.horrorRoomImage,
+      scaryImage:roomFirstStageImage==AssetsImage.roomFirstStageImage?
+       AssetsImage.horrorRoomImage:AssetsImage.horrorRoomDarkImage,
     ),
   );
-}
+ }
 
-void _onStageCompleted() {
-  GoRouter.of(context).go(AppRouter.gameChatView);
+Future<void> _onStageCompleted() async {
+  await GameFlowManager.completeStage(
+    context,
+    stage: 1,
+  );
 }
 
   void _onClockSolved() {
@@ -135,8 +137,40 @@ void _onStageCompleted() {
                 child: CustomIconSearchWidget(),
               ),
             ),
+
+             Hotspot(
+              latitude: 2.2737767013966736,
+              longitude: 3.339147044518862,
+              width: screenSize.width * 0.12,
+              height: screenSize.width * 0.12,
+              widget: GestureDetector(
+                onTap: (){
+                 // String roomFirstStageImage =AssetsImage.roomFirstStageImage;
+                 if(roomFirstStageImage==AssetsImage.roomFirstStageImage){
+                  setState(() {
+                    roomFirstStageImage=AssetsImage.roomFirstStageDarkImage;
+                  });
+                  
+                 }else{
+                  setState(() {
+                     roomFirstStageImage=AssetsImage.roomFirstStageImage;
+                  });
+                 
+                 }
+                },
+                child:roomFirstStageImage==AssetsImage.roomFirstStageImage?
+                 CustomLottieWidget():
+                 Container(
+                  
+                  decoration: BoxDecoration(
+                    color: Colors.transparent
+                  ),
+                  child: SizedBox())
+                 ,
+              ),
+            ),
           ],
-          child: Image.asset(AssetsImage.roomFirstStageImage),
+          child: Image.asset(roomFirstStageImage),
         ),
 
         // واجهة العنصر المفتوح، إن وُجدت.
@@ -170,3 +204,25 @@ void _onStageCompleted() {
   }
 }
 
+class CustomLottieWidget extends StatelessWidget {
+  const CustomLottieWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+     return Opacity(
+      opacity: 0.5,
+       child: Lottie.asset('assets/animation/Indicator.json',
+       ),
+     );
+    // Container(
+    //   decoration: BoxDecoration(
+    //     //color: Colors.red.withAlpha(120),
+    //     shape: BoxShape.circle,
+    //     //  border: Border.all(color: Colors.white, width: 0),
+    //   ),
+    //   child:  Lottie.asset('assets/animation/Indicator.json'),
+    // );
+  }
+}

@@ -1,0 +1,437 @@
+{
+  "second_01": {
+    "speaker": "Milo",
+    "expression": "friendly",
+    "text": {
+      "en": "Hey! You made it! First challenge completed!",
+      "ar": "أهو إنت خلصت! أول تحدي عدى بنجاح!"
+    },
+    "nextId": "second_02"
+  },
+  "second_02": {
+    "speaker": "Milo",
+    "text": {
+      "en": "I have to admit, you did better than I expected. I was starting to think I'd have to solve that puzzle for you!",
+      "ar": "لازم أعترف إنك عملت أحسن مما كنت متوقع. كنت بدأت أفكر إني هضطر أحل اللغز بدلًا منك!"
+    },
+    "nextId": "second_03"
+  },
+  "second_03": {
+    "speaker": "Milo",
+    "text": {
+      "en": "Just kidding! So, tell me... what did you think of your first challenge?",
+      "ar": "بهزر معاك! طيب، قولي... إيه رأيك في أول تحدي ليك؟"
+    },
+    "options": [
+      {
+        "text": { "en": "It was fun! I liked it.", "ar": "كانت ممتعة! عجبتني." },
+        "nextId": "reaction_fun"
+      },
+      {
+        "text": { "en": "It was okay, I guess.", "ar": "كانت مقبولة، أظن." },
+        "nextId": "reaction_okay"
+      },
+      {
+        "text": { "en": "Honestly, it was a little creepy.", "ar": "بصراحة، كانت مخيفة شوية." },
+        "nextId": "reaction_creepy"
+      }
+    ]
+  },
+  "reaction_fun": {
+    "speaker": "Milo",
+    "text": {
+      "en": "Glad to hear that! I've got plenty more challenges waiting for you.",
+      "ar": "كويس إنك استمتعت! لسه فيه تحديات كتير مستنياك."
+    },
+    "nextId": "get_to_know_intro"
+  },
+  "reaction_okay": {
+    "speaker": "Milo",
+    "text": {
+      "en": "Just okay? Ouch! I'll try to make the next one more interesting, then.",
+      "ar": "مقبولة بس؟! دي وجعتني! خلاص، هحاول أخلي اللي جاية أكثر إثارة."
+    },
+    "nextId": "get_to_know_intro"
+  },
+  "reaction_creepy": {
+    "speaker": "Milo",
+    "text": {
+      "en": "Creepy? Really? I thought I was being pretty nice to you!",
+      "ar": "مخيفة؟ بجد؟ ده أنا كنت بحاول أكون لطيف معاك!"
+    },
+    "nextId": "get_to_know_intro"
+  },
+  "get_to_know_intro": {
+    "speaker": "Milo",
+    "text": {
+      "en": "Anyway, since we're going to spend more time together, I thought we could get to know each other a little better.",
+      "ar": "المهم، بما إننا هنقضي وقت أكتر مع بعض، فكرت إننا ممكن نتعرف على بعض شوية."
+    },
+    "nextId": "player_intro_question"
+  },
+  "player_intro_question": {
+    "speaker": "Milo",
+    "text": {
+      "en": "You can start! Tell me a little about yourself.",
+      "ar": "ممكن تبدأ إنت! احكيلي شوية عن نفسك."
+    },
+    "options": [
+      {
+        "text": { "en": "Sure! What do you want to know?", "ar": "أكيد! تحب تعرف إيه؟" },
+        "nextId": "agree_to_talk"
+      },
+      {
+        "text": { "en": "I'd rather not talk about myself.", "ar": "أفضل إني متكلمش عن نفسي." },
+        "nextId": "refuse_talk_surprised"
+      }
+    ]
+  },
+  "agree_to_talk": {
+    "speaker": "Milo",
+    "text": {
+      "en": "Really? Awesome! I was hoping you'd say that.",
+      "ar": "بجد؟ جميل! كنت بتمنى إنك توافق."
+    },
+    "nextId": "milo_intro_01"
+  },
+  "refuse_talk_surprised": {
+    "speaker": "Milo",
+    "expression": "surprised",
+    "text": {
+      "en": "Oh! You don't want to?",
+      "ar": "أوه! مش حابب؟"
+    },
+    "nextId": "refuse_talk_okay"
+  },
+  "refuse_talk_okay": {
+    "speaker": "Milo",
+    "expression": "friendly",
+    "text": {
+      "en": "Well... okay. No pressure!",
+      "ar": "طيب... ماشي. براحتك، مش هضغط عليك!"
+    },
+    "nextId": "milo_intro_01"
+  },
+  "milo_intro_01": {
+    "speaker": "Milo",
+    "text": {
+      "en": "How about I go first, then? Fair is fair, right?",
+      "ar": "طب إيه رأيك إني أبدأ أنا؟ العدل عدل، مش كده؟"
+    },
+    "nextId": "milo_intro_02"
+  },
+  "milo_intro_02": {
+    "speaker": "Milo",
+    "text": {
+      "en": "Well, where do I begin? I'm Milo, your personal digital assistant!",
+      "ar": "طيب، أبدأ منين؟ أنا ميلو، مساعدك الرقمي الشخصي!"
+    },
+    "nextId": "milo_intro_03"
+  },
+  "milo_intro_03": {
+    "speaker": "Milo",
+    "text": {
+      "en": "My job is to keep you company, help you solve puzzles, and make sure you have a good time.",
+      "ar": "شغلي إني أونس وحدتك، وأساعدك تحل الألغاز، وأتأكد إنك بتقضي وقت ممتع."
+    },
+    "nextId": "milo_intro_04"
+  },
+  "milo_intro_04": {
+    "speaker": "Milo",
+    "text": {
+      "en": "I'm pretty good at puzzles, if I do say so myself. Though I might get a few things wrong now and then.",
+      "ar": "أنا شاطر في الألغاز، لو تسمحلي أقول كده. مع إني ممكن أغلط في كام حاجة من وقت للتاني."
+    },
+    "nextId": "milo_intro_05"
+  },
+  "milo_intro_05": {
+    "speaker": "Milo",
+    "text": {
+      "en": "But hey, nobody's perfect!",
+      "ar": "بس إيه يعني، مفيش حد كامل!"
+    },
+    "nextId": "milo_intro_06"
+  },
+  "milo_intro_06": {
+    "speaker": "Milo",
+    "text": {
+      "en": "As for what I like... I enjoy a good challenge, interesting conversations, and helping people figure things out.",
+      "ar": "أما بالنسبة للحاجات اللي بحبها... فأنا بحب التحديات الممتعة، والمحادثات الشيقة، ومساعدة الناس إنهم يفهموا الحاجات اللي محيراهم."
+    },
+    "nextId": "milo_intro_07"
+  },
+  "milo_intro_07": {
+    "speaker": "Milo",
+    "text": {
+      "en": "I guess you could say I'm curious by nature.",
+      "ar": "ممكن تقول إني فضولي بطبيعتي."
+    },
+    "nextId": "milo_intro_08"
+  },
+  "milo_intro_08": {
+    "speaker": "Milo",
+    "text": {
+      "en": "I like understanding how things work. People included.",
+      "ar": "بحب أفهم الحاجات بتشتغل إزاي. والناس كمان."
+    },
+    "nextId": "milo_intro_09"
+  },
+  "milo_intro_09": {
+    "speaker": "Milo",
+    "text": {
+      "en": "And now that you know a little about me, I think it's only fair that I get to know a little about you!",
+      "ar": "ودلوقتي بعد ما عرفت عني شوية، أظن من العدل إني أعرف عنك شوية أنا كمان!"
+    },
+    "nextId": "question_01"
+  },
+  "question_01": {
+    "speaker": "Milo",
+    "text": {
+      "en": "Let's start with something simple. What do you usually do when you have some time to yourself?",
+      "ar": "خلينا نبدأ بحاجة بسيطة. بتحب تعمل إيه عادةً لما بيكون عندك وقت لنفسك؟"
+    },
+    "options": [
+      {
+        "text": { "en": "Play games or watch videos.", "ar": "بلعب ألعاب أو بتفرج على فيديوهات." },
+        "nextId": "question_01_games"
+      },
+      {
+        "text": { "en": "Listen to music or read.", "ar": "بسمع مزيكا أو بقرأ." },
+        "nextId": "question_01_music"
+      },
+      {
+        "text": { "en": "Just think about things.", "ar": "بقعد أفكر في حاجات مختلفة." },
+        "nextId": "question_01_think"
+      }
+    ]
+  },
+  "question_01_games": {
+    "speaker": "Milo",
+    "text": {
+      "en": "Ah, a fellow fan of digital entertainment! Excellent choice.",
+      "ar": "آه، بتحب الترفيه الرقمي زيي! اختيار ممتاز."
+    },
+    "nextId": "question_02_intro"
+  },
+  "question_01_music": {
+    "speaker": "Milo",
+    "text": {
+      "en": "Nice! Sometimes a little music or a good story is all you need.",
+      "ar": "جميل! ساعات شوية مزيكا أو قصة حلوة بيكونوا كل اللي محتاجه الواحد."
+    },
+    "nextId": "question_02_intro"
+  },
+  "question_01_think": {
+    "speaker": "Milo",
+    "text": {
+      "en": "Just thinking? That can be interesting... though sometimes our minds take us to unexpected places.",
+      "ar": "مجرد تفكير؟ ده ممكن يكون ممتع... مع إن ساعات أفكارنا بتاخدنا لأماكن مش متوقعينها."
+    },
+    "nextId": "question_02_intro"
+  },
+  "question_02_intro": {
+    "speaker": "Milo",
+    "text": {
+      "en": "Speaking of which, here's another question.",
+      "ar": "وبما إننا بنتكلم عن التفكير، عندي سؤال تاني."
+    },
+    "nextId": "question_02"
+  },
+  "question_02": {
+    "speaker": "Milo",
+    "text": {
+      "en": "Do you ever get the feeling that someone knows something about you that you never actually told them?",
+      "ar": "عمرك حسيت إن فيه حد عارف عنك حاجة إنت محكتهاش له أصلًا؟"
+    },
+    "options": [
+      {
+        "text": { "en": "Yeah, sometimes. It's a weird feeling.", "ar": "أيوه، ساعات. إحساس غريب فعلًا." },
+        "nextId": "question_02_yes"
+      },
+      {
+        "text": { "en": "Not really. Why?", "ar": "مش أوي. ليه؟" },
+        "nextId": "question_02_why"
+      },
+      {
+        "text": { "en": "Maybe people are just good at guessing.", "ar": "يمكن الناس بس شاطرة في التخمين." },
+        "nextId": "question_02_guess"
+      }
+    ]
+  },
+  "question_02_yes": {
+    "speaker": "Milo",
+    "text": {
+      "en": "Right? It's strange when someone gets something right about you without knowing how.",
+      "ar": "مش كده؟ بيكون غريب لما حد يعرف حاجة صح عنك من غير ما تفهم عرفها إزاي."
+    },
+    "nextId": "question_02_merge"
+  },
+  "question_02_why": {
+    "speaker": "Milo",
+    "text": {
+      "en": "No particular reason! Just something I've wondered about.",
+      "ar": "مفيش سبب معين! مجرد حاجة فكرت فيها قبل كده."
+    },
+    "nextId": "question_02_merge"
+  },
+  "question_02_guess": {
+    "speaker": "Milo",
+    "text": {
+      "en": "Maybe. People can be surprisingly observant.",
+      "ar": "ممكن. الناس ساعات بتلاحظ تفاصيل أكتر مما نتوقع."
+    },
+    "nextId": "question_02_merge"
+  },
+  "question_02_merge": {
+    "speaker": "Milo",
+    "text": {
+      "en": "I suppose it's not always easy to tell how much someone can figure out just by watching.",
+      "ar": "أظن مش دايمًا سهل تعرف حد ممكن يستنتج عنك قد إيه من مجرد الملاحظة."
+    },
+    "nextId": "question_03_intro"
+  },
+  "question_03_intro": {
+    "speaker": "Milo",
+    "text": {
+      "en": "Okay, one last question... at least for now.",
+      "ar": "طيب، آخر سؤال... على الأقل في الوقت الحالي."
+    },
+    "nextId": "question_03"
+  },
+  "question_03": {
+    "speaker": "Milo",
+    "text": {
+      "en": "Have you ever missed a place you couldn't quite remember?",
+      "ar": "عمرك اشتقت لمكان مش قادر تفتكره كويس؟"
+    },
+    "options": [
+      {
+        "text": { "en": "I think so. That's a strange way to put it.", "ar": "أظن آه. دي طريقة غريبة لوصف الإحساس ده." },
+        "nextId": "question_03_yes"
+      },
+      {
+        "text": { "en": "No, I don't think I've ever felt that.", "ar": "لأ، مش أظن إني حسيت بكده قبل كده." },
+        "nextId": "question_03_no"
+      },
+      {
+        "text": { "en": "Why would you ask me that?", "ar": "إنت بتسألني السؤال ده ليه؟" },
+        "nextId": "question_03_why"
+      }
+    ]
+  },
+  "question_03_yes": {
+    "speaker": "Milo",
+    "text": {
+      "en": "Yeah... I suppose it is a strange feeling.",
+      "ar": "أيوه... أظن إنه إحساس غريب فعلًا."
+    },
+    "nextId": "question_03_merge"
+  },
+  "question_03_no": {
+    "speaker": "Milo",
+    "text": {
+      "en": "Lucky you! Some questions are probably better left unanswered.",
+      "ar": "إنت محظوظ! يمكن فيه أسئلة الأفضل إنها تفضل من غير إجابة."
+    },
+    "nextId": "question_03_merge"
+  },
+  "question_03_why": {
+    "speaker": "Milo",
+    "text": {
+      "en": "I don't know. I just thought it was an interesting question.",
+      "ar": "مش عارف. حسيت بس إنه سؤال مثير للاهتمام."
+    },
+    "nextId": "question_03_merge"
+  },
+  "question_03_merge": {
+    "speaker": "Milo",
+    "text": {
+      "en": "You know what? You don't have to answer any of these questions if you don't want to.",
+      "ar": "عارف إيه؟ إنت مش مضطر تجاوب على أي سؤال من الأسئلة دي لو مش حابب."
+    },
+    "nextId": "opt_out_02"
+  },
+  "opt_out_02": {
+    "speaker": "Milo",
+    "text": {
+      "en": "I was curious, that's all. And I don't want you to feel uncomfortable.",
+      "ar": "كنت فضولي بس، مش أكتر. ومش عايزك تحس بعدم الارتياح."
+    },
+    "options": [
+      {
+        "text": { "en": "It's okay. I don't mind.", "ar": "عادي، مفيش مشكلة عندي." },
+        "nextId": "opt_out_okay"
+      },
+      {
+        "text": { "en": "I'd rather stop talking about this.", "ar": "أفضل إننا نبطل كلام في الموضوع ده." },
+        "nextId": "opt_out_stop"
+      }
+    ]
+  },
+  "opt_out_okay": {
+    "speaker": "Milo",
+    "text": {
+      "en": "Good! I was worried I'd scared you off already.",
+      "ar": "كويس! كنت خايف أكون خوفتك مني من دلوقتي."
+    },
+    "nextId": "return_to_game"
+  },
+  "opt_out_stop": {
+    "speaker": "Milo",
+    "text": {
+      "en": "Of course! No problem at all. We can talk about something else.",
+      "ar": "طبعًا! مفيش أي مشكلة. ممكن نتكلم في حاجة تانية."
+    },
+    "nextId": "return_to_game"
+  },
+  "return_to_game": {
+    "speaker": "Milo",
+    "expression": "friendly",
+    "text": {
+      "en": "Anyway, enough getting to know each other for now. We've got another challenge waiting!",
+      "ar": "المهم، كفاية تعارف لحد كده. لسه فيه تحدي تاني مستنينا!"
+    },
+    "nextId": "return_to_game_02"
+  },
+  "return_to_game_02": {
+    "speaker": "Milo",
+    "text": {
+      "en": "And who knows? Maybe this one's going to be even more interesting.",
+      "ar": "ومين عارف؟ يمكن اللغز ده يكون أكثر إثارة كمان."
+    },
+    "nextId": "continue_question"
+  },
+  "continue_question": {
+    "speaker": "Milo",
+    "text": {
+      "en": "Ready to continue?",
+      "ar": "مستعد نكمل؟"
+    },
+    "options": [
+      {
+        "text": { "en": "Let's go!", "ar": "يلا بينا!" },
+        "nextId": "start_second_puzzle"
+      },
+      {
+        "text": { "en": "As long as there are no more personal questions.", "ar": "طول ما مفيش أسئلة شخصية تاني." },
+        "nextId": "no_more_questions_joke"
+      }
+    ]
+  },
+  "no_more_questions_joke": {
+    "speaker": "Milo",
+    "text": {
+      "en": "Ha! I'll try to behave. No promises, though!",
+      "ar": "هاه! هحاول ألتزم الأدب. بس مش هقدر أوعدك بحاجة!"
+    },
+    "nextId": "start_second_puzzle"
+  },
+  "start_second_puzzle": {
+    "speaker": "Milo",
+    "text": {
+      "en": "That's the spirit! Let's see what you've got.",
+      "ar": "أهو ده الكلام! وريني هتعمل إيه."
+    },
+    "action": "SECOND_PUZZLE_START"
+  }
+}

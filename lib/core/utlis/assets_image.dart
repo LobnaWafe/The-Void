@@ -20,4 +20,26 @@ class AssetsImage {
     static const String horrorRoomDarkImage =
     'assets/images/horror_room_dark.jfif';
 
+    static const String secondStageCam01Image =
+    'assets/images/second_stage_images/cam_01.jpg';
+    static const String secondStageCam02Image =
+    'assets/images/second_stage_images/cam_02.jpg';
+    static const String secondStageCam03Image =
+    'assets/images/second_stage_images/cam_03.jpg';
+    static const String secondStageCam04Image =
+    'assets/images/second_stage_images/cam_04.jpg';
+    static const String secondStageCam05Image =
+    'assets/images/second_stage_images/cam_05.jpg';
+
+    static const String secondStageCam01FImage =
+    'assets/images/second_stage_images/cam_01_f.jpg';
+     static const String secondStageCam02FImage =
+    'assets/images/second_stage_images/cam_02_f.jpg';
+     static const String secondStageCam03FImage =
+    'assets/images/second_stage_images/cam_03_f.jpg';
+     static const String secondStageCam04FImage =
+    'assets/images/second_stage_images/cam_04_f.jpg';
+     static const String secondStageCam05FImage =
+    'assets/images/second_stage_images/cam_05_f.jpg';
+
 }

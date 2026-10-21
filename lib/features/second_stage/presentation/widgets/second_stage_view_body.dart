@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:the_void/features/second_stage/presentation/widgets/camera_security.dart';
 import 'package:the_void/features/second_stage/presentation/widgets/computer_screen.dart';
@@ -19,6 +21,57 @@ class _SecondStageViewBodyState extends State<SecondStageViewBody> {
   bool showFileIcon = false;
   bool isMonsterPresent = false;
 
+  // حالة تحميل الصوت
+static const int soundLoadingDuration = 20;
+
+Timer? _soundTimer;
+
+int soundSecondsRemaining = 0;
+
+bool get isSoundLoading => soundSecondsRemaining > 0;
+
+void startSoundLoading() {
+  if (isSoundLoading) return;
+
+  setState(() {
+    soundSecondsRemaining = soundLoadingDuration;
+  });
+
+  _soundTimer?.cancel();
+
+  _soundTimer = Timer.periodic(
+    const Duration(seconds: 1),
+    (timer) {
+      if (!mounted) {
+        timer.cancel();
+        return;
+      }
+
+      if (soundSecondsRemaining <= 1) {
+        timer.cancel();
+
+        setState(() {
+          soundSecondsRemaining = 0;
+        });
+
+        // TODO: تشغيل ملف الصوت بعد انتهاء التحميل.
+
+        return;
+      }
+
+      setState(() {
+        soundSecondsRemaining--;
+      });
+    },
+  );
+}
+
+@override
+void dispose() {
+  _soundTimer?.cancel();
+  super.dispose();
+}
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -33,15 +86,20 @@ class _SecondStageViewBodyState extends State<SecondStageViewBody> {
             const VideoWidget(),
             Positioned(left: 20, bottom: 20, child: PowerButtonWidget()),
             // واجهة كاميرات المراقبة
-            if (isCameraOpen)
-              Positioned.fill(
-                child: CameraSecurity(
-                  isMonsterPresent: isMonsterPresent,
-                  onRoomTap: (roomName) {
-                    debugPrint('تم الضغط على: $roomName');
-                  },
-                ),
-              ),
+     if (isCameraOpen)
+  Positioned.fill(
+    child: CameraSecurity(
+      isMonsterPresent: isMonsterPresent,
+      onRoomTap: (roomName) {
+        debugPrint('تم الضغط على: $roomName');
+      },
+
+      // حالة عداد الصوت تأتي من الشاشة الأساسية
+      isSoundLoading: isSoundLoading,
+      soundSecondsRemaining: soundSecondsRemaining,
+      onSoundTap: startSoundLoading,
+    ),
+  ),
 
             // شاشة الكمبيوتر
             if (isComputerOpen)

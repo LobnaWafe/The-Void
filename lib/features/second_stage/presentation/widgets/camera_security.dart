@@ -8,11 +8,17 @@ class CameraSecurity extends StatefulWidget {
 
   // حالة وجود الوحش، سنربطها بالـ Cubit لاحقًا
   final bool isMonsterPresent;
+  final bool isSoundLoading;
+  final int soundSecondsRemaining;
+  final VoidCallback onSoundTap;
 
   const CameraSecurity({
     super.key,
     required this.onRoomTap,
     required this.isMonsterPresent,
+    required this.isSoundLoading,
+    required this.soundSecondsRemaining,
+    required this.onSoundTap,
   });
 
   @override
@@ -25,43 +31,38 @@ class _CameraSecurityState extends State<CameraSecurity> {
 
   bool areImagesLoaded = false;
 
-@override
-void didChangeDependencies() {
-  super.didChangeDependencies();
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
 
-  if (!areImagesLoaded) {
-    areImagesLoaded = true;
-    _preloadImages();
+    if (!areImagesLoaded) {
+      areImagesLoaded = true;
+      _preloadImages();
+    }
   }
-}
 
-Future<void> _preloadImages() async {
-  final images = [
-    AssetsImage.secondStageCam01Image,
-    AssetsImage.secondStageCam02Image,
-    AssetsImage.secondStageCam03Image,
-    AssetsImage.secondStageCam04Image,
-    AssetsImage.secondStageCam05Image,
-    AssetsImage.secondStageCam01FImage,
-    AssetsImage.secondStageCam02FImage,
-    AssetsImage.secondStageCam03FImage,
-    AssetsImage.secondStageCam04FImage,
-    AssetsImage.secondStageCam05FImage,
-  ];
+  Future<void> _preloadImages() async {
+    final images = [
+      AssetsImage.secondStageCam01Image,
+      AssetsImage.secondStageCam02Image,
+      AssetsImage.secondStageCam03Image,
+      AssetsImage.secondStageCam04Image,
+      AssetsImage.secondStageCam05Image,
+      AssetsImage.secondStageCam01FImage,
+      AssetsImage.secondStageCam02FImage,
+      AssetsImage.secondStageCam03FImage,
+      AssetsImage.secondStageCam04FImage,
+      AssetsImage.secondStageCam05FImage,
+    ];
 
-  await Future.wait(
-    images.map(
-      (image) => precacheImage(
-        AssetImage(image),
-        context,
-      ),
-    ),
-  );
+    await Future.wait(
+      images.map((image) => precacheImage(AssetImage(image), context)),
+    );
 
-  if (!mounted) return;
+    if (!mounted) return;
 
-  setState(() {});
-}
+    setState(() {});
+  }
 
   // تحويل رقم الغرفة إلى اسم الصورة المناسبة
   String get cameraImage {
@@ -114,6 +115,49 @@ Future<void> _preloadImages() async {
     widget.onRoomTap(roomName);
   }
 
+  Widget _buildSoundButton() {
+    return GestureDetector(
+      onTap: widget.isSoundLoading ? null : widget.onSoundTap,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+        decoration: BoxDecoration(
+          color: Colors.black.withValues(alpha: 0.85),
+          border: Border.all(
+            color: widget.isSoundLoading ? Colors.orangeAccent : Colors.white70,
+            width: 1.5,
+          ),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              widget.isSoundLoading ? Icons.hourglass_top : Icons.volume_up,
+              color: widget.isSoundLoading ? Colors.orangeAccent : Colors.white,
+              size: 25,
+            ),
+            const SizedBox(width: 8),
+            if (widget.isSoundLoading)
+              Text(
+                '${widget.soundSecondsRemaining}s',
+                style: const TextStyle(
+                  color: Colors.orangeAccent,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              )
+            else
+              const Text(
+                'Sound',
+                style: TextStyle(color: Colors.white, fontSize: 15),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -125,14 +169,14 @@ Future<void> _preloadImages() async {
           fit: StackFit.expand,
           children: [
             // صورة الغرفة المختارة
-           Positioned.fill(
-  child: Image.asset(
-    cameraImage,
-    fit: BoxFit.contain,
-    gaplessPlayback: true,
-    filterQuality: FilterQuality.low,
-  ),
-),
+            Positioned.fill(
+              child: Image.asset(
+                cameraImage,
+                fit: BoxFit.contain,
+                gaplessPlayback: true,
+                filterQuality: FilterQuality.low,
+              ),
+            ),
 
             // خريطة الغرف
             Positioned(
@@ -142,6 +186,12 @@ Future<void> _preloadImages() async {
                 onRoomTap: selectRoom,
                 mapWidth: width * 0.22,
               ),
+            ),
+
+            Positioned(
+              left: width * 0.1,
+              bottom: height * 0.045,
+              child: _buildSoundButton(),
             ),
           ],
         );
@@ -172,10 +222,7 @@ class RoomsMapWidget extends StatelessWidget {
       padding: EdgeInsets.all(mapWidth * 0.04),
       decoration: BoxDecoration(
         color: Colors.black.withValues(alpha: 0.5),
-        border: Border.all(
-          color: Colors.white60,
-          width: mapWidth * 0.007,
-        ),
+        border: Border.all(color: Colors.white60, width: mapWidth * 0.007),
         borderRadius: BorderRadius.circular(mapWidth * 0.04),
       ),
       child: LayoutBuilder(
@@ -186,9 +233,7 @@ class RoomsMapWidget extends StatelessWidget {
           return Stack(
             children: [
               Positioned.fill(
-                child: CustomPaint(
-                  painter: FiveRoomsLinesPainter(),
-                ),
+                child: CustomPaint(painter: FiveRoomsLinesPainter()),
               ),
 
               Positioned(
@@ -263,9 +308,6 @@ class RoomsMapWidget extends StatelessWidget {
     );
   }
 }
-
-
-
 
 // import 'package:flutter/material.dart';
 // import 'package:the_void/core/utlis/assets_image.dart';

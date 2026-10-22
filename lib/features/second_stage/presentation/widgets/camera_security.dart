@@ -4,13 +4,12 @@ import 'package:the_void/features/second_stage/presentation/widgets/five_rooms_l
 import 'package:the_void/features/second_stage/presentation/widgets/room_button.dart';
 
 class CameraSecurity extends StatefulWidget {
-  final Function(String) onRoomTap;
-
-  // حالة وجود الوحش، سنربطها بالـ Cubit لاحقًا
+  final ValueChanged<int> onRoomTap;
   final bool isMonsterPresent;
   final bool isSoundLoading;
   final int soundSecondsRemaining;
   final VoidCallback onSoundTap;
+  final int selectedRoom;
 
   const CameraSecurity({
     super.key,
@@ -19,6 +18,7 @@ class CameraSecurity extends StatefulWidget {
     required this.isSoundLoading,
     required this.soundSecondsRemaining,
     required this.onSoundTap,
+    required this.selectedRoom,
   });
 
   @override
@@ -26,9 +26,6 @@ class CameraSecurity extends StatefulWidget {
 }
 
 class _CameraSecurityState extends State<CameraSecurity> {
-  // الغرفة المختارة حاليًا
-  int selectedRoom = 1;
-
   bool areImagesLoaded = false;
 
   @override
@@ -64,55 +61,44 @@ class _CameraSecurityState extends State<CameraSecurity> {
     setState(() {});
   }
 
-  // تحويل رقم الغرفة إلى اسم الصورة المناسبة
+  // اختيار صورة الغرفة حسب وجود الوحش فيها.
   String get cameraImage {
-    final roomNumber = selectedRoom.toString().padLeft(2, '0');
-
-    if (widget.isMonsterPresent) {
-      switch (selectedRoom) {
-        case 1:
-          return AssetsImage.secondStageCam01FImage;
-        case 2:
-          return AssetsImage.secondStageCam02FImage;
-        case 3:
-          return AssetsImage.secondStageCam03FImage;
-        case 4:
-          return AssetsImage.secondStageCam04FImage;
-        case 5:
-          return AssetsImage.secondStageCam05FImage;
-        default:
-          return AssetsImage.secondStageCam01FImage;
-      }
-    }
-
-    switch (selectedRoom) {
+    switch (widget.selectedRoom) {
       case 1:
-        return AssetsImage.secondStageCam01Image;
+        return widget.isMonsterPresent
+            ? AssetsImage.secondStageCam01FImage
+            : AssetsImage.secondStageCam01Image;
+
       case 2:
-        return AssetsImage.secondStageCam02Image;
+        return widget.isMonsterPresent
+            ? AssetsImage.secondStageCam02FImage
+            : AssetsImage.secondStageCam02Image;
+
       case 3:
-        return AssetsImage.secondStageCam03Image;
+        return widget.isMonsterPresent
+            ? AssetsImage.secondStageCam03FImage
+            : AssetsImage.secondStageCam03Image;
+
       case 4:
-        return AssetsImage.secondStageCam04Image;
+        return widget.isMonsterPresent
+            ? AssetsImage.secondStageCam04FImage
+            : AssetsImage.secondStageCam04Image;
+
       case 5:
-        return AssetsImage.secondStageCam05Image;
+        return widget.isMonsterPresent
+            ? AssetsImage.secondStageCam05FImage
+            : AssetsImage.secondStageCam05Image;
+
       default:
         return AssetsImage.secondStageCam01Image;
     }
   }
 
-  void selectRoom(String roomName) {
-    final roomNumber = int.tryParse(roomName.replaceAll('Room ', ''));
+  // إرسال رقم الغرفة المختارة إلى الـ Cubit.
+  void selectRoom(int roomNumber) {
+    if (roomNumber < 1 || roomNumber > 5) return;
 
-    if (roomNumber == null || roomNumber < 1 || roomNumber > 5) {
-      return;
-    }
-
-    setState(() {
-      selectedRoom = roomNumber;
-    });
-
-    widget.onRoomTap(roomName);
+    widget.onRoomTap(roomNumber);
   }
 
   Widget _buildSoundButton() {
@@ -168,7 +154,7 @@ class _CameraSecurityState extends State<CameraSecurity> {
         return Stack(
           fit: StackFit.expand,
           children: [
-            // صورة الغرفة المختارة
+            // صورة الغرفة المختارة.
             Positioned.fill(
               child: Image.asset(
                 cameraImage,
@@ -178,16 +164,17 @@ class _CameraSecurityState extends State<CameraSecurity> {
               ),
             ),
 
-            // خريطة الغرف
+            // خريطة الغرف.
             Positioned(
-              top: height * 0.05,
-              right: width * 0.025,
+              bottom: height * 0.05,
+              left: width * 0.5,
               child: RoomsMapWidget(
                 onRoomTap: selectRoom,
                 mapWidth: width * 0.22,
               ),
             ),
 
+            // زر الصوت والعداد.
             Positioned(
               left: width * 0.1,
               bottom: height * 0.045,
@@ -203,7 +190,7 @@ class _CameraSecurityState extends State<CameraSecurity> {
 // ================= خريطة الغرف =================
 
 class RoomsMapWidget extends StatelessWidget {
-  final Function(String) onRoomTap;
+  final ValueChanged<int> onRoomTap;
   final double mapWidth;
 
   const RoomsMapWidget({
@@ -240,7 +227,7 @@ class RoomsMapWidget extends StatelessWidget {
                 top: height * 0.04,
                 left: width * 0.36,
                 child: buildRoomButton(
-                  'Room 1',
+                  1,
                   width: width * 0.30,
                   height: height * 0.16,
                 ),
@@ -250,7 +237,7 @@ class RoomsMapWidget extends StatelessWidget {
                 top: height * 0.40,
                 left: 0,
                 child: buildRoomButton(
-                  'Room 2',
+                  2,
                   width: width * 0.30,
                   height: height * 0.16,
                 ),
@@ -260,7 +247,7 @@ class RoomsMapWidget extends StatelessWidget {
                 top: height * 0.37,
                 left: width * 0.36,
                 child: buildRoomButton(
-                  'Room 3',
+                  3,
                   width: width * 0.32,
                   height: height * 0.22,
                 ),
@@ -270,7 +257,7 @@ class RoomsMapWidget extends StatelessWidget {
                 top: height * 0.40,
                 right: 0,
                 child: buildRoomButton(
-                  'Room 4',
+                  4,
                   width: width * 0.30,
                   height: height * 0.16,
                 ),
@@ -280,7 +267,7 @@ class RoomsMapWidget extends StatelessWidget {
                 bottom: height * 0.04,
                 left: width * 0.36,
                 child: buildRoomButton(
-                  'Room 5',
+                  5,
                   width: width * 0.30,
                   height: height * 0.16,
                 ),
@@ -293,17 +280,17 @@ class RoomsMapWidget extends StatelessWidget {
   }
 
   Widget buildRoomButton(
-    String name, {
+    int roomNumber, {
     required double width,
     required double height,
   }) {
     return GestureDetector(
-      onTap: () => onRoomTap(name),
+      onTap: () => onRoomTap(roomNumber),
       child: RoomButton(
         mapWidth: mapWidth,
         width: width,
         height: height,
-        name: name,
+        name: 'Room $roomNumber',
       ),
     );
   }

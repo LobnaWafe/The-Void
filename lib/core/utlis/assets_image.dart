@@ -42,4 +42,7 @@ class AssetsImage {
      static const String secondStageCam05FImage =
     'assets/images/second_stage_images/cam_05_f.jpg';
 
+    static const String secondStageMonasterAttackImage="assets/images/second_stage_images/monaster_attack.png";
+
+static const String secondStageRoomPowerOffImage="assets/images/second_stage_images/room_second_stage_power_off.jpg";
 }
